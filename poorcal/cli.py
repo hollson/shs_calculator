@@ -4,15 +4,15 @@ from .calculator import Calculator
 
 def main():
     if len(sys.argv) != 2:
-        print("Usage: ccli \"<number1> <operator> <number2>\"")
-        print("Example: ccli \"1 + 2\"")
+        print("Usage: poorcal \"<number1> <operator> <number2>\"")
+        print("Example: poorcal \"1 + 2\"")
         sys.exit(1)
 
     expr = sys.argv[1].strip()
     match = re.match(r'^\s*(\d*\.?\d+)\s*([+\-*/])\s*(\d*\.?\d+)\s*$', expr)
     if not match:
         print(f"Error: Invalid expression format. Expected '<number> <operator> <number>', you entered: {expr}")
-        print("Example: ccli \"3 + 2\" or ccli \"10.5 * 2\"")
+        print("Example: poorcal \"3 + 2\" or poorcal \"10.5 * 2\"")
         sys.exit(1)
 
     a_str, op, b_str = match.groups()

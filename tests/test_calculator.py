@@ -1,5 +1,5 @@
 import unittest
-from shs_calculator import Calculator
+from poorcal import Calculator
 
 class TestCalculator(unittest.TestCase):
     """Calculator 类的单元测试用例"""

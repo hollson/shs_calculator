@@ -24,12 +24,12 @@
 **项目结构**
 
 ```bash
-shs_calculator/
-├── shs_calculator/        # 核心代码(与项目名一致）
+poorcal/
+├── poorcal/        	   # 核心代码(与项目名一致）
 │   ├── __init__.py        # 包初始化
 │   ├── calculator.py      # 计算器实现
 │   └── cli.py             # 命令行接口
-├── tests/                  # 测试目录
+├── tests/                 # 测试目录
 │   ├── __init__.py
 │   └── test_calculator.py  # 测试用例
 ├── README.md               # 项目说明
@@ -41,13 +41,13 @@ shs_calculator/
 
 ```bash
 # 创建目录
-mkdir -p shs_calculator/shs_calculator shs_calculator/tests
-cd shs_calculator
+mkdir -p poorcal/poorcal poorcal/tests
+cd poorcal
 
 # 创建文件
-touch shs_calculator/__init__.py
-touch shs_calculator/calculator.py
-touch shs_calculator/cli.py
+touch poorcal/__init__.py
+touch poorcal/calculator.py
+touch poorcal/cli.py
 touch tests/__init__.py
 touch tests/test_calculator.py
 touch README.md
@@ -65,7 +65,7 @@ touch pyproject.toml
 ### 2.1 计算器类
 
 ```python
-# File: shs_calculator/calculator.py
+# File: poorcal/calculator.py
 class Calculator:
     """简单计算器类，支持加减乘除运算"""
     
@@ -91,24 +91,22 @@ class Calculator:
 ### 2.2 命令行接口
 
 ```python
-# File: shs_calculator/cli.py
+# File: poorcal/cli.py
 import sys
 import re
 from .calculator import Calculator
 
 def main():
     if len(sys.argv) != 2:
-        print("用法: ccli \"<数字1> <运算符> <数字2>\"")
-        print("示例: ccli \"1 + 2\"")
+        print("Usage: poorcal \"<number1> <operator> <number2>\"")
+        print("Example: poorcal \"1 + 2\"")
         sys.exit(1)
 
     expr = sys.argv[1].strip()
-
-    # 简单的正则匹配：匹配如 "3 + 5" 这种格式
     match = re.match(r'^\s*(\d*\.?\d+)\s*([+\-*/])\s*(\d*\.?\d+)\s*$', expr)
     if not match:
-        print(f"错误：表达式格式不正确，应为 '<数字> <运算符> <数字>'，您输入的是：{expr}")
-        print("示例：ccli \"3 + 2\" 或 ccli \"10.5 * 2\"")
+        print(f"Error: Invalid expression format. Expected '<number> <operator> <number>', you entered: {expr}")
+        print("Example: poorcal \"3 + 2\" or poorcal \"10.5 * 2\"")
         sys.exit(1)
 
     a_str, op, b_str = match.groups()
@@ -118,7 +116,7 @@ def main():
         a = float(a_str)
         b = float(b_str)
     except ValueError:
-        print("错误：数字必须为有效数值")
+        print("Error: Numbers must be valid numeric values")
         sys.exit(1)
 
     operations = {
@@ -129,14 +127,14 @@ def main():
     }
 
     if op not in operations:
-        print("错误：运算符必须是 +, -, *, / 之一")
+        print("Error: Operator must be one of +, -, *, /")
         sys.exit(1)
 
     try:
         result = operations[op](a, b)
-        print(f"结果: {result}")
+        print(f"Result: {result}")
     except ValueError as e:
-        print(f"错误：{e}")
+        print(f"Error: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
@@ -146,7 +144,7 @@ if __name__ == "__main__":
 ### 2.3 包初始化
 
 ```python
-# File: shs_calculator/__init__.py
+# File: poorcal/__init__.py
 # 从核心模块导入 Calculator 类，方便用户直接导入使用
 from .calculator import Calculator
 
@@ -168,7 +166,7 @@ __all__ = ["Calculator"]
 ```python
 # File: tests/test_calculator.py
 import unittest
-from shs_calculator import Calculator
+from poorcal import Calculator
 
 class TestCalculator(unittest.TestCase):
     """Calculator 类的单元测试用例"""
@@ -240,10 +238,10 @@ pip list
 
 ```shell
 # 测试命令行
-ccli "1 + 2"
-ccli "3 - 1"
-ccli "2 * 3"
-ccli "8 / 2"
+poorcal "1 + 2"
+poorcal "3 - 1"
+poorcal "2 * 3"
+poorcal "8 / 2"
 ```
 
 
@@ -258,7 +256,7 @@ ccli "8 / 2"
 
 ```toml
 [project]
-name = "shs_calculator"
+name = "poorcal"
 version = "0.1.0"
 authors = [
   { name="Hollson", email="hollson@qq.com" }
@@ -278,7 +276,7 @@ requires-python = ">=3.12"
 dependencies = []
 
 [project.scripts]
-ccli = "shs_calculator.cli:main"
+poorcal = "poorcal.cli:main"
 ```
 
 
@@ -292,8 +290,8 @@ python -m build
 
 生成文件：
 
-- `dist/shs_calculator-0.1.0.tar.gz` (源码包)
-- `dist/shs_calculator-0.1.0-py3-none-any.whl` (Wheel 安装包，推荐）
+- `dist/poorcal-0.1.0.tar.gz` (源码包)
+- `dist/poorcal-0.1.0-py3-none-any.whl` (Wheel 安装包，推荐）
 
 
 
@@ -314,9 +312,9 @@ python -m build
     Uploading distributions to https://upload.pypi.org/legacy/
     WARNING  This environment is not supported for trusted publishing                                             
     Enter your API token: 
-    Uploading shs_calculator-0.1.0-py3-none-any.whl
+    Uploading poorcal-0.1.0-py3-none-any.whl
     100% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.7/5.7 kB • 00:00 • ?
-    Uploading shs_calculator-0.1.0.tar.gz
+    Uploading poorcal-0.1.0.tar.gz
     100% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.8/6.8 kB • 00:00 • ?
     
     View at:
@@ -334,11 +332,11 @@ python -m build
 ### 1. 安装包
 
 ```shell
-$ pip show shs_calculator
-Name: shs_calculator
+$ pip show poorcal
+Name: poorcal
 Version: 0.1.0
 Summary: 一个简单的加减乘除计算包，完美演绎了Python包的应用过程。
-Home-page: https://github.com/hollson/shs_calculator
+Home-page: https://github.com/hollson/poorcal
 Author:
 Author-email: Hollson <hollson@qq.com>
 License-Expression: MIT
@@ -350,7 +348,7 @@ Required-by:
 ### 2. 项目中使用
 
 ```python
-from shs_calculator import Calculator
+from poorcal import Calculator
 
 calc = Calculator()
 print(calc.add(2, 3))      # 5.0
@@ -360,7 +358,7 @@ print(calc.divide(10, 2))  # 5.0
 ### 3. 命令行使用
 
 ```bash
-ccli "3 * 4"  # 输出: 结果: 12.0
+poorcal "3 * 4"  # 输出: 结果: 12.0
 ```
 
 
