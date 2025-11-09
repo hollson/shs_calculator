@@ -16,5 +16,5 @@ class Calculator:
     def divide(self, a: float, b: float) -> float:
         """除法运算"""
         if b == 0:
-            raise ValueError("除数不能为零")
+            raise ValueError("The divisor cannot be zero")
         return a / b
