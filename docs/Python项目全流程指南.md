@@ -281,7 +281,7 @@ poorcal = "poorcal.cli:main"
 
 
 
-### 2. 构建打包
+### 4.2 构建打包
 
 ```bash
 # 需要先安装：pip install build
@@ -295,7 +295,7 @@ python -m build
 
 
 
-### 3. 发布到PyPI
+### 4.3 发布到PyPI
 
 - **注册账号 ：**  前往 [https://pypi.org](https://pypi.org/) 注册账号，并验证邮箱。
 - **创建API Token :** 登录后进入账号管理，点击生成 [Add API token](https://pypi.org/manage/account/token/) 创建**Token**，复制Token (_只会显示一次_)。
@@ -329,7 +329,7 @@ python -m build
 
 ## 🚀 五、使用示例
 
-### 1. 安装包
+### 5.1 安装poorcal安装
 
 ```shell
 $ pip show poorcal
@@ -345,7 +345,7 @@ Requires:
 Required-by:
 ```
 
-### 2. 项目中使用
+### 5.2 项目中使用poorcal
 
 ```python
 from poorcal import Calculator
@@ -355,7 +355,7 @@ print(calc.add(2, 3))      # 5.0
 print(calc.divide(10, 2))  # 5.0
 ```
 
-### 3. 命令行使用
+### 5.3 命令行使用poorcal
 
 ```bash
 poorcal "3 * 4"  # 输出: 结果: 12.0
